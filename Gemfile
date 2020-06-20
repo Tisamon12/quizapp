@@ -3,7 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'knock' #simple JWT authentication
+gem "knock", github: "nsarno/knock", branch: "master",
+    ref: "9214cd027422df8dc31eb67c60032fbbf8fc100b"
 
 gem 'factory_bot'
 
