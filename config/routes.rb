@@ -9,7 +9,14 @@ Rails.application.routes.draw do
 
   		resource :users, only: [:update, :destroy]
 
-  		resources :categories, only: [:create, :update, :destroy]
+      post "questions/:id/answer", to: "questions#answer"
+
+      resources :questions, only: [:show, :create, :update, :destroy]
+
+  		resources :categories, only: [:index, :show, :create, :update, :destroy] do
+        resources :questions, only: [:index, :create]
+        get "/get_questions", to: "categories#get_questions"
+      end
   	end
   end
 end

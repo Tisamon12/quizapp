@@ -3,6 +3,19 @@ module Api
 		class CategoriesController < ApplicationController
 			before_action :authenticate_user
 
+			def index
+				categories = Category.all
+
+				render json: {categories: categories}, status: :ok
+			end
+
+			def show
+				category = Category.find(params[:id])
+				questions = category.questions
+
+				render json: {category: category, questions: questions}, status: :ok
+			end
+
 			def create
 				category = Category.new(category_params)
 
@@ -15,7 +28,7 @@ module Api
 
 			def update
 				category = Category.find(params[:id])
-				category.assign_attributes(user_params)
+				category.assign_attributes(category_params)
 
 				if category.save
 					render json: {}, status: :ok
@@ -32,6 +45,13 @@ module Api
 				else
 					render json: { error: category.errors }, status: :unprocessable_entity
 				end
+			end
+
+			def get_questions
+				category = Category.find(params[:category_id])
+				questions = category.questions.limit(5).order("RAND()").select(:id, :content, :answers)
+
+				render json: {questions: questions}
 			end
 
 			private
