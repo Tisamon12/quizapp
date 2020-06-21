@@ -7,7 +7,7 @@ export default {
 
 	methods: {
 		play(id) {
-			
+			this.$router.push(`/game/${id}`)
 		}
 	},
 
