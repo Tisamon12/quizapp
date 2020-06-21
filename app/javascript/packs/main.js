@@ -7,10 +7,21 @@
 
 import Vue from 'vue'
 import App from '../app.vue'
+import vuetify from './plugins/vuetify'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import { router } from './router'
+import interceptorsSetup from './interceptors'
+
+interceptorsSetup()
+
+Vue.use(VueAxios, axios)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    render: h => h(App)
+  	vuetify,
+    render: h => h(App),
+    router: router
   }).$mount()
   document.body.appendChild(app.$el)
 
