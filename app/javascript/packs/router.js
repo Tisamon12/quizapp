@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import signForm from './components/signForm/cmp'
 import categories from './components/categories/cmp'
 import game from './components/game/cmp'
+import newQuestion from './components/newQuestion/cmp'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export const router = new Router({
 			path: '/game/:id',
 			name: "Game",
 			component: game
+		},
+		{
+			path: '/categories/:id/new_question',
+			name: "NewQuestion",
+			component: newQuestion
 		}
 	]
 })

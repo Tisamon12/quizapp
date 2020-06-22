@@ -12,8 +12,11 @@
 										v-card-title
 											| {{category.title}}
 										v-card-actions
-											v-btn(text @click="play(category.id)")
-												| Zagraj		
+											v-btn(@click="play(category.id)" color="primary")
+												| Zagraj
+											v-spacer
+											v-btn(text :to="`/categories/${category.id}/new_question`")
+												| Dodaj pytanie
 						v-col(md="3")
 
 						

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from 'axios'
 import { router } from './router'
 
@@ -8,6 +9,8 @@ export default function setup() {
       if(token) {
           config.headers.Authorization = `Bearer ${token}`;
       }
+      config.headers.common['Content-Type'] = "application/json"
+      config.headers.common['Accept'] = "application/json"
       return config;
   }, function(err) {
       return Promise.reject(err);
@@ -17,7 +20,9 @@ export default function setup() {
   	return response
   }, function(error) {
   	if(error.response.status === 401) {
-  		this.$router.push("/")
-  	}
+  		router.push("/")
+  	} else {
+      return Promise.reject(error)
+    }
   })
 }

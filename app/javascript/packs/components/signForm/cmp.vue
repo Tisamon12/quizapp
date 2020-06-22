@@ -14,10 +14,10 @@
 									v-card-text
 										v-form
 											ValidationProvider(v-slot="{ errors }" rules="required" name="Login")
-												v-text-field(label="Login" name="login" prepend-icon="mdi-account" type="text" v-model="login")
+												v-text-field(label="Login" name="login" prepend-icon="mdi-account" type="text" v-model="login" :error-messages="errors")
 
 											ValidationProvider(v-slot="{ errors }" rules="required" name="Password")
-												v-text-field(label="Hasło" name="password" prepend-icon="mdi-lock" type="password" v-model="password")
+												v-text-field(label="Hasło" name="password" prepend-icon="mdi-lock" type="password" v-model="password" :error-messages="errors")
 
 									v-card-actions
 										v-btn(color="primary" @click="signInForm = false" text=true)

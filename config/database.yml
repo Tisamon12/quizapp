@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: quizapp_production
   username: quizapp
   password: <%= ENV['QUIZAPP_DATABASE_PASSWORD'] %>

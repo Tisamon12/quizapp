@@ -10,6 +10,9 @@
 							v-card-actions
 								v-btn(@click="getQuestions" color="primary")
 									| Zagraj jeszcze raz
+								v-spacer
+								v-btn(to="/categories")
+									| Wróć
 
 						v-btn(v-if="!gameStarted && !showScore" @click="getQuestions" color="primary")
 							| Graj

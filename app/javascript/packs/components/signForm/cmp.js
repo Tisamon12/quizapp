@@ -38,7 +38,6 @@ export default {
 				localStorage.jwt = response.data.jwt
 				this.$router.push("/categories")
 			}).catch(error => {
-				console.log(error)
 				if (error.response.status == 404) {
 					this.loginError = true
 				}
@@ -57,6 +56,12 @@ export default {
 			}).catch(error => {
 				console.log(error.response.data)
 			})
+		}
+	},
+
+	mounted() {
+		if (localStorage.jwt) {
+			this.$router.push("/categories")
 		}
 	}
 }
