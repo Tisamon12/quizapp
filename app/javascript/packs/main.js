@@ -12,6 +12,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { router } from './router'
 import interceptorsSetup from './interceptors'
+import 'vuetify/dist/vuetify.min.css'
 
 interceptorsSetup()
 
