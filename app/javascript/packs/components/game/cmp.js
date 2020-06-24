@@ -8,18 +8,19 @@ export default {
 			timer: {},
 			timeLeft: 0,
 			correctAnswers: 0,
-			showScore: false
+			showScore: false,
+			disabledAnswers: false
 		}
 	},
 
 	methods: {
 		getQuestions() {
-			this.gameStarted = true
-			this.showScore = false
 			this.axios.get(`categories/${this.$route.params.id}/get_questions`).then(response => {
 				this.questions = response.data.questions
 				this.currentQuestion = this.questions[0]
 				this.correctAnswers = 0
+				this.gameStarted = true
+				this.showScore = false
 				this.play()
 			})
 		},
@@ -27,10 +28,8 @@ export default {
 		play() {
 			this.timeLeft = 100
 			if (this.currentQuestionIndex < 5) {
-				console.log(this.currentQuestion.content)
 				this.timer = setInterval(() => {
 					this.timeLeft -= 10
-					console.log(this.timeLeft)
 					if (this.timeLeft == 0) {
 						clearInterval(this.timer)
 						this.currentQuestionIndex += 1
@@ -44,14 +43,15 @@ export default {
 		},
 
 		sendAnswer(answer) {
+			this.disabledAnswers = true
+			clearInterval(this.timer)
 			this.axios.post(`questions/${this.currentQuestion.id}/answer`, {
 				answer: answer
 			}).then(response => {
-				clearInterval(this.timer)
-				console.log("response.data.is_correct", response.data.is_correct)
 				if (response.data.is_correct) this.correctAnswers += 1
 				this.currentQuestionIndex += 1
 				this.currentQuestion = this.questions[this.currentQuestionIndex]
+				this.disabledAnswers = false
 				this.play()
 			})
 		},

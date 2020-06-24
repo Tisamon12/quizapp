@@ -25,7 +25,7 @@
 								v-card-actions
 									v-row
 										v-col(cols="6" v-for="answer in currentQuestion.answers")
-											v-btn(block @click="sendAnswer(answer)")
+											v-btn(block @click="sendAnswer(answer)" :disabled="disabledAnswers")
 												| {{ answer }}
 
 

@@ -13,20 +13,22 @@ import VueAxios from 'vue-axios'
 import { router } from './router'
 import interceptorsSetup from './interceptors'
 import 'vuetify/dist/vuetify.min.css'
+import Vuex from 'vuex'
+import { store } from './store'
 
 interceptorsSetup()
 
 Vue.use(VueAxios, axios)
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
   	vuetify,
     render: h => h(App),
-    router: router
+    router: router,
+    store: store
   }).$mount()
   document.body.appendChild(app.$el)
-
-  console.log(app)
 })
 
 
