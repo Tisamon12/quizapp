@@ -5,7 +5,7 @@ module Api
 			before_action :get_category, only: [:index, :create]
 
 			def index
-				questions = @category.questions
+				questions = @category.questions.select(:id, :content, :answers, :correct_answer, :category_id)
 
 				render json: {questions: questions}, status: :ok
 			end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
       post "questions/:id/answer", to: "questions#answer"
 
-      resources :questions, only: [:show, :create, :update, :destroy]
+      resources :questions, only: [:update, :destroy]
 
   		resources :categories, only: [:index, :show, :create, :update, :destroy] do
         resources :questions, only: [:index, :create]
