@@ -4,7 +4,7 @@ module Api
 			before_action :authenticate_user
 
 			def index
-				categories = Category.all.select(:id, :title)
+				categories = Category.all.select(:id, :title, :question_amount)
 
 				render json: {categories: categories}, status: :ok
 			end

@@ -4,6 +4,7 @@ import signForm from './components/signForm/cmp'
 import categories from './components/categories/cmp'
 import game from './components/game/cmp'
 import newQuestion from './components/newQuestion/cmp'
+import newCategory from './components/categories/new/cmp'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export const router = new Router({
 			path: '/categories/:id/new_question',
 			name: "NewQuestion",
 			component: newQuestion
+		},
+		{
+			path: '/categories/new',
+			name: 'NewCategory',
+			component: newCategory
 		}
 	]
 })

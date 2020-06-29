@@ -28,6 +28,9 @@
 										v-btn(color="primary" @click="addQuestion()" :disabled="invalid")
 											| Dodaj pytanie
 
+										v-btn(to="/categories")
+											| Anuluj
+
 				v-snackbar(v-model="questionError")
 					| Ups! Coś poszło nie tak
 
